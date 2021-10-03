@@ -1,0 +1,62 @@
+﻿<adonisControls:AdonisWindow x:Class="NSInstaller.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NSInstaller"                             
+        xmlns:adonisUi="clr-namespace:AdonisUI;assembly=AdonisUI"
+        xmlns:adonisControls="clr-namespace:AdonisUI.Controls;assembly=AdonisUI"
+        xmlns:adonisExtensions="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+        mc:Ignorable="d"
+        PlaceTitleBarOverContent="True"
+        Title="NS Installer" Height="450" Width="300" TitleBarBackground="#3D3F4D" WindowButtonHighlightBrush="#2A2B34" ResizeMode="NoResize">
+    <Grid>
+        <StackPanel Margin="12">
+            <Border Height="{Binding Path=TitleBarActualHeight, RelativeSource={RelativeSource AncestorType={x:Type adonisControls:AdonisWindow}}}" />
+            <GroupBox Header="Start Installation"  
+                      Width="250"
+                      Padding="{adonisUi:Space 2, 1.5}"
+                      Background="#FF32323F" Height="380">
+                <Grid>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="1. Root of Micro SD" Margin="0 0 0 5"
+                                   FontSize="10"/>
+                        <TextBox x:Name="filePathTxt" adonisExtensions:WatermarkExtension.Watermark="Location" BorderBrush="{x:Null}"/>
+                        <Button x:Name="openFileLocationBttn" Click="openFileLocationBttn_Click" Content="Open Folder Location"
+                                Style="{DynamicResource {x:Static adonisUi:Styles.AccentButton}}"/>
+
+                        <Border Margin="0 10 0 0"/>
+
+                        <TextBlock Text="2. Start Operation" Margin="0 0 0 5"
+                                   FontSize="10"/>
+                        <Button x:Name="startBttn" Click="startBttn_Click" Content="Start Installation"
+                                Style="{DynamicResource {x:Static adonisUi:Styles.AccentButton}}"/>
+                        <Border Margin="0 10 0 0"/>
+                        <TextBlock Text="3. Tools" Margin="0 0 0 5"
+                                   FontSize="10"/>
+                        <Button x:Name="installSigBttn" Click="installSigBttn_Click" Content="Install Sig Patches" Background="#3D3D4C" BorderBrush="{x:Null}"/>
+                        <Button x:Name="fixAtmoBttn" Click="fixAtmoBttn_Click" Content="Fix Atmosphere crashes" Background="#3D3D4C" BorderBrush="{x:Null}"/>
+                        <Button x:Name="updtHekateBttn" Click="updtHekateBttn_Click" Content="Update Hekate" Background="#3D3D4C" BorderBrush="{x:Null}"/>
+                        <Button x:Name="updtAtmoBttn" Click="updtAtmoBttn_Click" Content="Update Atmosphere" Background="#3D3D4C" BorderBrush="{x:Null}"/>
+                    </StackPanel>
+                    <ProgressBar x:Name="progressBar" Minimum="0"
+                                 Height="20"
+             Value="0"
+             Maximum="100"
+             Padding="0, 2"
+             HorizontalContentAlignment="Center"
+             VerticalAlignment="Bottom"
+             BorderBrush="#FF4A4A5E">
+                        <adonisExtensions:ProgressBarExtension.ContentTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Waiting..."/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </adonisExtensions:ProgressBarExtension.ContentTemplate>
+                    </ProgressBar>
+                </Grid>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</adonisControls:AdonisWindow>
