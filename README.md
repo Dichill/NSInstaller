@@ -1,1 +1,20 @@
-"# NSInstaller" 
+# NSInstaller
+Install Bootloaders, Custom Firmwares, and Signature Patches in one click!
+
+**Start Installation** will check for the latest <a href="https://github.com/CTCaer/hekate">Hekate</a>, <a href="https://github.com/Atmosphere-NX/Atmosphere">Atmosphere</a>, and Signature Patches releases and will automatically extract it for you in just one click!
+
+## Images
+![image](https://user-images.githubusercontent.com/48512644/135766310-29f597d4-5393-48bd-b1bd-f80360c0c3a4.png)
+
+## Tools
+- Install Sig Patches - If you have Atmosphere already, you can install Sigpatches if games/homebrew applications keeps crashing.
+- Fix Atmosphere Crashes - Will install the latest Sig Patches and deletes the `\atmosphere\contents\01000000001000`
+- Update Hekate - Updates Hekate to its latest version.
+- Update Atmosphere - Backups folders and extracts the latest version of Atmosphere.
+
+## Credits
+- benruehl for the best looking themes [Adonis UI WPF](https://github.com/benruehl/adonis-ui/)
+- Ookii for the amazing folder dialogs! [Ookii Dialogs WPF](https://github.com/ookii-dialogs/ookii-dialogs-wpf)
+- Anonymous for the amazing [XCI-Explorer!](https://github.com/StudentBlake/XCI-Explorer)
+- CTCaer for the amazing bootloader! [Hekate](https://github.com/CTCaer/hekate)
+- SciresM for the amazing custom firmware! [Atmosphere](https://github.com/Atmosphere-NX/Atmosphere)
