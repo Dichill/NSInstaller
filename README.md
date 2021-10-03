@@ -7,10 +7,10 @@ Install Bootloaders, Custom Firmwares, and Signature Patches in one click!
 ![image](https://user-images.githubusercontent.com/48512644/135766310-29f597d4-5393-48bd-b1bd-f80360c0c3a4.png)
 
 ## Tools
-- Install Sig Patches - If you have Atmosphere already, you can install Sigpatches if games/homebrew applications keeps crashing.
-- Fix Atmosphere Crashes - Will install the latest Sig Patches and deletes the `\atmosphere\contents\01000000001000`
-- Update Hekate - Updates Hekate to its latest version.
-- Update Atmosphere - Backups folders and extracts the latest version of Atmosphere.
+- **Install Sig Patches** - If you have Atmosphere already, you can install Sigpatches if games/homebrew applications keeps crashing.
+- **Fix Atmosphere Crashes** - Will install the latest Sig Patches and deletes the `\atmosphere\contents\01000000001000`
+- **Update Hekate** - Updates Hekate to its latest version.
+- **Update Atmosphere** - Backups folders and extracts the latest version of Atmosphere.
 
 ## Credits
 - [benruehl](https://github.com/benruehl) for the best looking themes [Adonis UI WPF](https://github.com/benruehl/adonis-ui/)
