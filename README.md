@@ -19,4 +19,4 @@ Install Bootloaders, Custom Firmwares, and Signature Patches in one click!
 - [CTCaer](https://github.com/CTCaer) for the amazing bootloader! [Hekate](https://github.com/CTCaer/hekate)
 - [SciresM](https://github.com/Atmosphere-NX) for the amazing custom firmware! [Atmosphere](https://github.com/Atmosphere-NX/Atmosphere)
 - [ITotalJustice](https://github.com/ITotalJustice) for the amazing sig patches! [Patches](https://github.com/ITotalJustice/patches)
-- [Switchway](https://switchway.xyz/) if it wasn't for their guide, I wouldn't be where I'm today! (xd)
+- [Switchway](https://switchway.xyz/) if it wasn't for their switch modding guides, I wouldn't be where I'm today! (xd)
