@@ -7,7 +7,7 @@ Install Hekate, Atmosphere, and Signature Patches in one click!<br>
 
 ## How to use
 1. First of, plug your micro sd into your computer.
-2. Format the micro sd and make sure its Fat32. (Skip this part if its already formatted and its Fat32, ExFat32 is also acceptable but to data corruption we will go for Fat32.)
+2. Format the micro sd and make sure its Fat32. (Skip this part if its already formatted and its Fat32, ExFat32 is also acceptable but to avoid data corruption we will go for Fat32.)
 3. Open NSInstaller and click Open File Location.
 4. Locate the path of your Micro SD Folder and click Select Folder.
 5. Click on Start Installation and you can relax and sit back and wait for it to finish.
