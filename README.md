@@ -1,4 +1,4 @@
-# NSInstaller
+# NSInstaller (IN DEVELOPMENT)
 Install Hekate, Atmosphere, and Signature Patches in one click!<br>
 ![image](https://user-images.githubusercontent.com/48512644/135766310-29f597d4-5393-48bd-b1bd-f80360c0c3a4.png)
 
