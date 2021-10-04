@@ -15,6 +15,8 @@ namespace NSInstaller
 {
     public partial class MainWindow : AdonisWindow
     {
+        private bool isFinished;
+        private int Stage = 0;
 
         public MainWindow()
         {          
@@ -82,12 +84,22 @@ namespace NSInstaller
             }
         }
 
+        // ~ Stages of Installation ~
+        // Stage 1 - Install Hekate
+        // Stage 2 - Install Atmospher
+        // Stage 3 - Install Patches
+        // Stage 4 - Install Lockpick_RCM
+        // ~ FINISHED ~
+
         private void StartInstallation()
         {
             setAllButtonIsEnabled(false);
 
             startBttn.Content = "Installing...";
             proglabel.Text = "Status: Starting Installation....";
+
+            // Let it know that we are in the first stage.
+            Stage += 1;
         }
 
         #region Download Handler / Extraction Handler
@@ -100,15 +112,10 @@ namespace NSInstaller
                 webProxy.Credentials = CredentialCache.DefaultCredentials;
                 webClient.Proxy = webProxy;
                 webClient.DownloadProgressChanged += (s, e) => { main.progressBar.Value = e.ProgressPercentage; main.proglabel.Text = "$[{e.ProgressPercentage}%] Downloading - " + url; };
-                webClient.DownloadFileCompleted += async (s, e) => { await ExtractZip(filePath, main.filePathTxt.Text); };
+                webClient.DownloadFileCompleted += async (s, e) => { main.proglabel.Text = "Extracting required files to root path...";  await Task.Run(() => ZipFile.ExtractToDirectory(filePath, main.filePathTxt.Text)); main.proglabel.Text = "Finished Extracting!"; };
                 await webClient.DownloadFileTaskAsync(new Uri(url), filePath).ConfigureAwait(false);
             }
-        }
-
-        private static async Task ExtractZip(string filePath, string rootPath)
-        {
-
-        }
+        }       
         #endregion
 
         #region Tools | onClick Events
