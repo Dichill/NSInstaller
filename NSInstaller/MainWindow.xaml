@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:NSInstaller"                             
         xmlns:adonisUi="clr-namespace:AdonisUI;assembly=AdonisUI"
         xmlns:adonisControls="clr-namespace:AdonisUI.Controls;assembly=AdonisUI"
-        xmlns:adonisExtensions="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
-        mc:Ignorable="d"
+        xmlns:adonisExtensions="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI" xmlns:model="clr-namespace:NSInstaller.Model"
+                             mc:Ignorable="d"
         PlaceTitleBarOverContent="True"
         Title="NS Installer" Height="450" Width="300" TitleBarBackground="#3D3F4D" WindowButtonHighlightBrush="#2A2B34" ResizeMode="NoResize">
     <Grid>
@@ -39,22 +39,22 @@
                         <Button x:Name="updtHekateBttn" Click="updtHekateBttn_Click" Content="Update Hekate" Background="#3D3D4C" BorderBrush="{x:Null}"/>
                         <Button x:Name="updtAtmoBttn" Click="updtAtmoBttn_Click" Content="Update Atmosphere" Background="#3D3D4C" BorderBrush="{x:Null}"/>
                     </StackPanel>
-                    <ProgressBar x:Name="progressBar" Minimum="0"
-                                 Height="20"
-             Value="0"
-             Maximum="100"
-             Padding="0, 2"
-             HorizontalContentAlignment="Center"
-             VerticalAlignment="Bottom"
-             BorderBrush="#FF4A4A5E">
-                        <adonisExtensions:ProgressBarExtension.ContentTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Waiting..."/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </adonisExtensions:ProgressBarExtension.ContentTemplate>
-                    </ProgressBar>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                        <ProgressBar x:Name="progressBar" Minimum="0"
+                                Height="20" 
+                                Value="0"
+                                Maximum="100"
+                                Padding="0, 2"
+                                HorizontalContentAlignment="Center"
+                                VerticalAlignment="Bottom"
+                                BorderBrush="#FF4A4A5E">
+                        </ProgressBar>
+                        <TextBlock x:Name="proglabel" Text="Waiting for user."
+                               VerticalAlignment="Bottom"
+                                   TextAlignment="Left"
+                                   FontSize="10"
+                                   Padding="2"/>
+                    </StackPanel>
                 </Grid>
             </GroupBox>
         </StackPanel>

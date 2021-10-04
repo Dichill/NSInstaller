@@ -16,5 +16,10 @@ namespace NSInstaller.Utils
 
         // Credits to ITotalJustice for providing Signature Patches!
         public string sig_patches = "https://api.github.com/repos/ITotalJustice/patches/releases";
+
+        // Credits to shchmue & Contributors for making Lockpick RCM!
+        public string lockpick_rcm = "https://api.github.com/repos/shchmue/Lockpick_RCM/releases";
+
+
     }
 }
