@@ -6,6 +6,19 @@ Install Hekate, Atmosphere, and Signature Patches in one click!
 ## Images
 ![image](https://user-images.githubusercontent.com/48512644/135766310-29f597d4-5393-48bd-b1bd-f80360c0c3a4.png)
 
+## How to use
+1. First of, plug your micro sd into your computer.
+2. Format the micro sd and make sure its Fat32. (Skip this part if its already formatted and its Fat32, ExFat32 is also acceptable but to avoid crashes, and etc we will go for Fat32.)
+3. Open NSInstaller and click Open File Location.
+4. Locate the path of your Micro SD Folder and click Select Folder.
+5. Click on Start Installation and you can relax and sit back and wait for it to finish.
+7. Once done you can now Eject it and use [TegraRCMGui](https://github.com/eliboa/TegraRcmGUI) to boot Hekate/Fuuse.
+8. Do note that sig patches are already installed into your atmosphere, you don't need to use the Tools since it does it for you already.
+
+**IMPORTANT**
+If you're having a tough time with **part 7** I recommend you to watch this video: 
+Also don't forget to backup your **Nand**!
+
 ## Tools
 - **Install Sig Patches** - If you have Atmosphere already, you can install Sigpatches if games/homebrew applications keeps crashing.
 - **Fix Atmosphere Crashes** - Will install the latest Sig Patches and deletes the `\atmosphere\contents\01000000001000`
