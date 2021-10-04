@@ -16,8 +16,8 @@ Install Hekate, Atmosphere, and Signature Patches in one click!
 8. Do note that sig patches are already installed into your atmosphere, you don't need to use the Tools since it does it for you already.
 
 **IMPORTANT**
-If you're having a tough time with **part 7** I recommend you to watch this video: 
-Also don't forget to backup your **Nand**!
+- If you're having a tough time with **part 7** I recommend you to watch this video: 
+- Also don't forget to backup your **Nand**! You can follow this guide right here: https://switchway.xyz/backup-nand-%26-keys
 
 ## Tools
 - **Install Sig Patches** - If you have Atmosphere already, you can install Sigpatches if games/homebrew applications keeps crashing.
