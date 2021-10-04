@@ -25,8 +25,8 @@ namespace NSInstaller
             this.Title = "NSInstaller v" + getAssemblyVersion();                     
 
             // The Installation Folder where we dump the downloaded files.
-            if (!Directory.Exists("temp")) Directory.CreateDirectory("temp");
-            if (!Directory.Exists("logs")) Directory.CreateDirectory("logs");
+            if (!Directory.Exists(util.temp_folder)) Directory.CreateDirectory(util.temp_folder);
+            if (!Directory.Exists(util.logs_folder)) Directory.CreateDirectory(util.logs_folder);
 
             setAllButtonIsEnabled(false);
             openFileLocationBttn.IsEnabled = true;

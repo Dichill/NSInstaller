@@ -21,5 +21,11 @@ namespace NSInstaller.Utils
         public string lockpick_rcm = "https://api.github.com/repos/shchmue/Lockpick_RCM/releases";
 
 
+        // Folders
+        public string root_folder = "C:/NSInstaller/";
+
+        public string temp_folder = "temp";
+
+        public string logs_folder = "logs";
     }
 }
