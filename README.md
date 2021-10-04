@@ -15,7 +15,7 @@ Install Hekate, Atmosphere, and Signature Patches in one click!<br>
 8. Do note that sig patches are already installed into your atmosphere, you don't need to use the Tools since it does it for you already.
 
 **IMPORTANT**
-- If you're having a tough time with **No. 7** I recommend you to watch this video: 
+- For a video explaining how to jailbreak switch using NSInstaller you can check this video out: 
 - Also don't forget to backup your **Nand**! You can follow this guide right here: https://switchway.xyz/backup-nand-%26-keys
 
 ## Tools
