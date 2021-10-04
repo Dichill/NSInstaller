@@ -17,3 +17,4 @@ D:\repos\NSInstaller\NSInstaller\obj\Debug\NSInstaller.csproj.CoreCompileInputs.
 D:\repos\NSInstaller\NSInstaller\obj\Debug\NSInstaller.csproj.CopyComplete
 D:\repos\NSInstaller\NSInstaller\obj\Debug\NSInstaller.exe
 D:\repos\NSInstaller\NSInstaller\obj\Debug\NSInstaller.pdb
+D:\repos\NSInstaller\NSInstaller\obj\Debug\NSInstaller.csproj.AssemblyReference.cache

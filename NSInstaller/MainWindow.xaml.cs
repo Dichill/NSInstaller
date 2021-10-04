@@ -8,6 +8,8 @@ using NSInstaller.Utils;
 using NSInstaller.Ookii;
 using Newtonsoft.Json;
 using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace NSInstaller
 {
@@ -62,23 +64,21 @@ namespace NSInstaller
         {
             if (filePathTxt.Text.Length == 0) MessageBox.Show("Please select the micro sd folder before starting the installation.", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
             else if (filePathTxt.Text.Length >= 2)
-            {
-                // Check First the Folder.
-                startBttn.Content = "Checking...";
-                proglabel.Text = "Status: Checking Folder Path.....";                
-
+            {               
                 try
                 {
+                    // Check First the Folder.
+                    startBttn.Content = "Checking...";
+                    proglabel.Text = "Status: Checking Folder Path.....";
                     var directory = new DirectoryInfo(filePathTxt.Text);
                     var files = directory.GetFiles();
                     if (files.Length == 0) StartInstallation();
-                    else if (files.Length > 1) { MessageBox.Show("Please format your SD Card First before doing the Installation. (There are files in the Micro SD)", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning); startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!"; }
+                    else if (files.Length > 1) { startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!";  MessageBox.Show("Please format your SD Card First before doing the Installation. (There are files in the Micro SD)", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning); }
                 }
-                catch (Exception error) {
-                    MessageBox.Show("Folder Location not found! Make sure that the SD Card is plugged in!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning); startBttn.Content = "Start Installation"; proglabel.Text = "Error: Directory does not Exist!";
-                    Console.WriteLine("Error Occured: " + error.ToString()) ;
-                    proglabel.Text = error.ToString();
-                }                
+                catch (Exception ex)
+                {
+                    startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!";  MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
         }
 
@@ -89,6 +89,27 @@ namespace NSInstaller
             startBttn.Content = "Installing...";
             proglabel.Text = "Status: Starting Installation....";
         }
+
+        #region Download Handler / Extraction Handler
+        private async static Task DownloadAsync(string url, string filePath)
+        {
+            MainWindow main = new MainWindow();
+            using (var webClient = new WebClient())
+            {
+                IWebProxy webProxy = WebRequest.DefaultWebProxy;
+                webProxy.Credentials = CredentialCache.DefaultCredentials;
+                webClient.Proxy = webProxy;
+                webClient.DownloadProgressChanged += (s, e) => { main.progressBar.Value = e.ProgressPercentage; main.proglabel.Text = "$[{e.ProgressPercentage}%] Downloading - " + url; };
+                webClient.DownloadFileCompleted += async (s, e) => { await ExtractZip(filePath, main.filePathTxt.Text); };
+                await webClient.DownloadFileTaskAsync(new Uri(url), filePath).ConfigureAwait(false);
+            }
+        }
+
+        private static async Task ExtractZip(string filePath, string rootPath)
+        {
+
+        }
+        #endregion
 
         #region Tools | onClick Events
         private void installSigBttn_Click(object sender, System.Windows.RoutedEventArgs e)
