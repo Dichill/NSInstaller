@@ -11,7 +11,7 @@ NSInstaller's Folder can be found at **C:/NSInstaller/** It is where backups/tem
 ## Releases.txt
 ![image](https://user-images.githubusercontent.com/48512644/136057415-3451716f-2838-4389-9310-09da5863cf62.png)
 
-releases.txt file contains repositories that are needed for switch, you can add another one by adding the link below line and also adding `api` before `Github.com` and adding `repos` after.<br>
+releases.txt file contains repositories that are needed for switch, you can add another one by adding the link below the line and also adding `api` before `Github.com` and adding `repos` after.<br>
 
 For Example: https://github.com/CTCaer/hekate/releases -> https://api.github.com/repos/CTCaer/hekate/releases<br>
 
