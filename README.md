@@ -1,9 +1,20 @@
-# NSInstaller (IN DEVELOPMENT)
+# NSInstaller BETA
 Install Hekate, Atmosphere, and Signature Patches in one click!<br>
 ![image](https://user-images.githubusercontent.com/48512644/135878945-7748cabf-94df-40f8-b54f-d8a223c8ab9f.png)
 
-
 **Start Installation** will check for the latest <a href="https://github.com/CTCaer/hekate">Hekate</a>, <a href="https://github.com/Atmosphere-NX/Atmosphere">Atmosphere</a>, and [Signature Patch](https://github.com/ITotalJustice/patches) releases and will automatically extract it for you in just one click! DO note that you still have to manually back up and create an emuMMC via hekate, this app only helps if you are in a hurry for installing or updating Hekate or Atmosphere. I would still recommend installing these stuff manually but if its too complicated for you, you can use this tool to help you.
+
+## Folders
+![image](https://user-images.githubusercontent.com/48512644/136057195-d5fea062-dc98-44e6-886b-b69256a9a6a1.png)
+NSInstaller's Folder can be found at **C:/NSInstaller/** It is where backups/temporary files are stored. (Logs not yet implemented.)
+
+## Releases.txt
+![image](https://user-images.githubusercontent.com/48512644/136057415-3451716f-2838-4389-9310-09da5863cf62.png)
+This .txt file contains repositories that are needed for switch, you can add another one by line and also adding **api.** before **Github.com**<br>
+
+For Example: https://github.com/CTCaer/hekate/releases -> https://api.github.com/repos/CTCaer/hekate/releases<br>
+
+When you **Start Installation** It will also download the files and extract it to your Micro SD.
 
 ## How to use
 1. First of, plug your micro sd into your computer.
