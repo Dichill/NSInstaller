@@ -123,7 +123,7 @@ namespace NSInstaller
             } 
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString(), "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Error);
+                Dispatcher.Invoke(() => MessageBox.Show(e.ToString(), "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Error)) ;
             }           
         }
         #endregion
@@ -344,6 +344,7 @@ namespace NSInstaller
 
                             new List<string>(Directory.GetFiles(filePathTxt.Text)).ForEach(file => { if (file.ToUpper().Contains("hekate".ToUpper())) File.Delete(file); });
                             Task task = DownloadSingleLink("https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases");
+                            Task task2 = DownloadSingleLink("https://api.github.com/repos/ITotalJustice/patches/releases");
                         }
                         else
                         {
