@@ -12,7 +12,7 @@ NSInstaller's Folder can be found at **C:/NSInstaller/** It is where backups/tem
 ## Releases.txt
 ![image](https://user-images.githubusercontent.com/48512644/136057415-3451716f-2838-4389-9310-09da5863cf62.png)
 
-This .txt file contains repositories that are needed for switch, you can add another one by line and also adding **api.** before **Github.com**<br>
+releases.txt file contains repositories that are needed for switch, you can add another one by line and also adding **api.** before **Github.com**<br>
 
 For Example: https://github.com/CTCaer/hekate/releases -> https://api.github.com/repos/CTCaer/hekate/releases<br>
 
@@ -38,7 +38,7 @@ When you **Start Installation** It will also download the files and extract it t
 - **Update Atmosphere** - Backups folders and extracts the latest version of Atmosphere including Sig Patches.
 
 ## Common Errors
-Any errors that isn't in the Common Errors list, please file an issue with the picture, or join the support discord.
+Any errors that isn't in the Common Errors list, please file an issue with the picture provided, or join the support discord.
 - **The File C:/NSInstaller/backup/...** - Back up folder still exist, delete everything inside it. If you deleted the backup folder, restart NSInstaller.
 
 ## Credits
