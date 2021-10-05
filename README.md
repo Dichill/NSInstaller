@@ -39,7 +39,7 @@ When you **Start Installation** It will also download the files and extract it t
 
 ## Common Errors
 Any errors that isn't in the Common Errors list, please file an issue with the picture provided, or join the support discord.
-- **The File C:/NSInstaller/backup/...** - Back up folder still exist, delete everything inside it. If you deleted the backup folder, restart NSInstaller.
+- `The File C:/NSInstaller/backup/...` - Back up folder still exist, delete everything inside it. If you deleted the backup folder, restart NSInstaller.
 
 ## Credits
 - [benruehl](https://github.com/benruehl) for the best looking themes [Adonis UI WPF](https://github.com/benruehl/adonis-ui/)
