@@ -23,5 +23,7 @@ namespace NSInstaller.Utils
         public string temp_folder = "C:/NSInstaller/temp/";
 
         public string logs_folder = "C:/NSInstaller/logs/";
+
+        public string backup_folder = "C:/NSInstaller/backup/";
     }
 }

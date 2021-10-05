@@ -30,6 +30,7 @@ namespace NSInstaller
             if (!Directory.Exists(util.root_folder)) Directory.CreateDirectory(util.root_folder);
             if (!Directory.Exists(util.temp_folder)) Directory.CreateDirectory(util.temp_folder);
             if (!Directory.Exists(util.logs_folder)) Directory.CreateDirectory(util.logs_folder);
+            if (!Directory.Exists(util.backup_folder)) Directory.CreateDirectory(util.backup_folder);
             if (!File.Exists("releases.txt")) File.Create("releases.txt");
 
             setAllButtonIsEnabled(false);
@@ -172,13 +173,13 @@ namespace NSInstaller
                     webClient.Proxy = webProxy;
                     webClient.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; " +
                                         "Windows NT 5.2; .NET CLR 1.0.3705;)");
-                    webClient.DownloadProgressChanged += (s, e) => { Dispatcher.Invoke(() => { progressBar.Value = e.ProgressPercentage; proglabel.Text = $"[{e.ProgressPercentage}%] Fetching API - " + url; }); };
+                    webClient.DownloadProgressChanged += (s, e) => { Dispatcher.Invoke(() => { progressBar.Value = e.ProgressPercentage; proglabel.Text = $"[{e.ProgressPercentage}%] Fetching API - " + url;  }); };
                     webClient.DownloadStringCompleted += async (s, e) =>
                     {
                         dynamic dynObj = JsonConvert.DeserializeObject(e.Result);
                         string browser_url = dynObj[0].assets[0].browser_download_url;
 
-                        await DownloadAsync(browser_url);
+                        await DownloadAsync(browser_url);                        
                     };
                     await webClient.DownloadStringTaskAsync(new Uri(url)).ConfigureAwait(false);
                     webClient.Dispose();
@@ -205,6 +206,7 @@ namespace NSInstaller
                     webClient.DownloadProgressChanged += (s, e) => { Dispatcher.Invoke(() => { progressBar.Value = e.ProgressPercentage; proglabel.Text = $"[{e.ProgressPercentage}%] Downloading - " + url; }); };
                     webClient.DownloadFileCompleted += (s, e) => { 
                         ExtractZips(Path.GetFileName(new Uri(url).LocalPath));
+                        CleanInstallation();
                     };
                     await webClient.DownloadFileTaskAsync(new Uri(url), util.temp_folder + Path.GetFileName(new Uri(url).LocalPath)).ConfigureAwait(false);
                     webClient.Dispose();
@@ -217,10 +219,7 @@ namespace NSInstaller
         }
 
         private void ExtractZips(string v)
-        {
-            Dispatcher.Invoke(() => progressBar.Value = 0);
-
-            
+        {                       
             using (ZipFile zip = ZipFile.Read(util.temp_folder + v))
             {
                 foreach (ZipEntry zipFiles in zip)
@@ -245,8 +244,77 @@ namespace NSInstaller
 
                         if (Directory.Exists(filePathTxt.Text + "/Atmosphere/"))
                         {
-                            Task task = DownloadSingleLink("https://api.github.com/repos/ITotalJustice/patches/releases");
+                            Task task = DownloadSingleLink("https://api.github.com/repos/ITotalJustice/patches/releases");                            
+                        }
+                        else
+                        {
                             CleanInstallation();
+                            MessageBox.Show("Atmosphere Folder not Found! Did you install it correctly?", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!"; MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }                    
+                }
+            }            
+        }
+
+        private void fixAtmoBttn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Do you want to install the Latest Signature Patches to your Nintendo Switch?", "NSInstaller", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            {
+                if (filePathTxt.Text.Length == 0) MessageBox.Show("Please select the micro sd folder before starting the installation.", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else if (filePathTxt.Text.Length >= 2)
+                {
+                    try
+                    {
+                        proglabel.Text = "Status: Checking Folder Path.....";
+
+                        if (Directory.Exists(filePathTxt.Text + "/Atmosphere/"))
+                        {
+                            if (Directory.Exists(filePathTxt.Text + "/Atmosphere/contents/01000000001000"))
+                            {
+                                Directory.Delete(filePathTxt.Text + "/Atmosphere/contents/01000000001000");                                
+                            }
+                            Task task = DownloadSingleLink("https://api.github.com/repos/ITotalJustice/patches/releases");
+                        } 
+                        else
+                        {
+                            CleanInstallation();
+                            MessageBox.Show("Atmosphere Folder not Found! Did you install it correctly?", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!"; MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+            }
+        }
+
+        private void updtHekateBttn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Do you want to Update Hekate for your Nintendo Switch?", "NSInstaller", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            {
+                if (filePathTxt.Text.Length == 0) MessageBox.Show("Please select the micro sd folder before starting the installation.", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else if (filePathTxt.Text.Length >= 2)
+                {
+                    try
+                    {
+                        proglabel.Text = "Status: Checking Folder Path.....";
+
+                        if (Directory.Exists(filePathTxt.Text + "/bootloader/"))
+                        {
+                            new List<string>(Directory.GetFiles(filePathTxt.Text)).ForEach(file => { if (file.ToUpper().Contains("hekate".ToUpper())) File.Delete(file); });
+                            Task task = DownloadSingleLink("https://api.github.com/repos/CTCaer/hekate/releases");
+                        }
+                        else
+                        {
+                            CleanInstallation();
+                            MessageBox.Show("Bootloader Folder not Found! Did you install it correctly?", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                     catch (Exception ex)
@@ -254,26 +322,45 @@ namespace NSInstaller
                         startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!"; MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
-            }            
-        }
-
-        private void fixAtmoBttn_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void updtHekateBttn_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
+            }
         }
 
         private void updtAtmoBttn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (MessageBox.Show("Do you want to Update Atmosphere for your Nintendo Switch? Backups can be found at C:/NSInstaller/backup/", "NSInstaller", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+            {
+                if (filePathTxt.Text.Length == 0) MessageBox.Show("Please select the micro sd folder before starting the installation.", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else if (filePathTxt.Text.Length >= 2)
+                {
+                    try
+                    {
+                        proglabel.Text = "Status: Checking Folder Path.....";
 
+                        if (Directory.Exists(filePathTxt.Text + "/bootloader/") && Directory.Exists(filePathTxt.Text + "/atmosphere/"))
+                        {
+                            // Back it up first, just in case something went wrong.
+                            CopyDirectory(new DirectoryInfo(filePathTxt.Text + "/atmosphere"), new DirectoryInfo(util.backup_folder + "/atmosphere"));
+                            CopyDirectory(new DirectoryInfo(filePathTxt.Text + "/bootloader"), new DirectoryInfo(util.backup_folder + "/bootloader"));
+
+                            new List<string>(Directory.GetFiles(filePathTxt.Text)).ForEach(file => { if (file.ToUpper().Contains("hekate".ToUpper())) File.Delete(file); });
+                            Task task = DownloadSingleLink("https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases");
+                        }
+                        else
+                        {
+                            CleanInstallation();
+                            MessageBox.Show("Atmosphere Folder not Found! Did you install it correctly?", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!"; MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+            }
         }
         #endregion
 
-        #region Misc | SetButtonIsEnabled | URI Handler
+        #region Misc | SetButtonIsEnabled | URI Handler | CopyDirectory Handler
         private void setAllButtonIsEnabled(bool isEnabled)
         {
             filePathTxt.IsEnabled = isEnabled;
@@ -285,7 +372,35 @@ namespace NSInstaller
             updtAtmoBttn.IsEnabled = isEnabled;
             homeBrewBttn.IsEnabled = isEnabled;
         }
-        #endregion
+
+        // https://stackoverflow.com/questions/677221/copy-folders-in-c-sharp-using-system-io
+        static void CopyDirectory(DirectoryInfo source, DirectoryInfo destination)
+        {
+            if (!destination.Exists)
+            {
+                destination.Create();
+            }
+
+            // Copy all files.
+            FileInfo[] files = source.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                file.CopyTo(Path.Combine(destination.FullName,
+                    file.Name));
+            }
+
+            // Process subdirectories.
+            DirectoryInfo[] dirs = source.GetDirectories();
+            foreach (DirectoryInfo dir in dirs)
+            {
+                // Get destination directory.
+                string destinationDir = Path.Combine(destination.FullName, dir.Name);
+
+                // Call CopyDirectory() recursively.
+                CopyDirectory(dir, new DirectoryInfo(destinationDir));
+            }
+        }
+        #endregion 
 
         #region Models and Utilities
         Util util = new Util();
