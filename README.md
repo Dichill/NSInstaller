@@ -1,5 +1,5 @@
 # NSInstaller BETA
-Install Hekate, Atmosphere, and Signature Patches in one click!<br>
+Install Bootloaders, Custom Firmwares, and Signature Patches in-one-click!<br>
 ![image](https://user-images.githubusercontent.com/48512644/135878945-7748cabf-94df-40f8-b54f-d8a223c8ab9f.png)
 
 **Start Installation** will check for the latest <a href="https://github.com/CTCaer/hekate">Hekate</a>, <a href="https://github.com/Atmosphere-NX/Atmosphere">Atmosphere</a>, and [Signature Patch](https://github.com/ITotalJustice/patches) releases and will automatically extract it for you in just one click! DO note that you still have to manually back up and create an emuMMC via hekate, this app only helps if you are in a hurry for installing or updating Hekate or Atmosphere. I would still recommend installing these stuff manually but if its too complicated for you, you can use this tool to help you.
