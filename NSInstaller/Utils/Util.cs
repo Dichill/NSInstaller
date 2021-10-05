@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,23 +10,18 @@ namespace NSInstaller.Utils
     class Util
     {
         // Credits to CTCaer & Contributors for making this amazing Bootloader!
-        public string hekate_releases = "https://api.github.com/repos/CTCaer/hekate/releases";
-
         // Credits to SciresM & Contributors for making this amazing Custom Firmware!
-        public string atmosphere_releases = "https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases";
-
         // Credits to ITotalJustice for providing Signature Patches!
-        public string sig_patches = "https://api.github.com/repos/ITotalJustice/patches/releases";
-
         // Credits to shchmue & Contributors for making Lockpick RCM!
-        public string lockpick_rcm = "https://api.github.com/repos/shchmue/Lockpick_RCM/releases";
 
+        // Links must be in order so it will replace the files needed to be patched.
+        public string[] github_releases = File.ReadAllLines("releases.txt");
 
-        // Folders
+        // Folder Paths related to NS Installer
         public string root_folder = "C:/NSInstaller/";
 
-        public string temp_folder = "temp";
+        public string temp_folder = "C:/NSInstaller/temp/";
 
-        public string logs_folder = "logs";
+        public string logs_folder = "C:/NSInstaller/logs/";
     }
 }

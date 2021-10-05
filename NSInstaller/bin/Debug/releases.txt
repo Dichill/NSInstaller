@@ -1,0 +1,3 @@
+https://api.github.com/repos/CTCaer/hekate/releases
+https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases
+https://api.github.com/repos/ITotalJustice/patches/releases

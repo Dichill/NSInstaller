@@ -18,3 +18,5 @@ D:\repos\NSInstaller\NSInstaller\obj\Debug\NSInstaller.csproj.CopyComplete
 D:\repos\NSInstaller\NSInstaller\obj\Debug\NSInstaller.exe
 D:\repos\NSInstaller\NSInstaller\obj\Debug\NSInstaller.pdb
 D:\repos\NSInstaller\NSInstaller\obj\Debug\NSInstaller.csproj.AssemblyReference.cache
+D:\repos\NSInstaller\NSInstaller\bin\Debug\DotNetZip.dll
+D:\repos\NSInstaller\NSInstaller\bin\Debug\DotNetZip.pdb

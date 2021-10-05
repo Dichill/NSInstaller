@@ -35,6 +35,15 @@
           "lib/net45/AdonisUI.ClassicTheme.dll": {}
         }
       },
+      "DotNetZip/1.15.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/DotNetZip.dll": {}
+        },
+        "runtime": {
+          "lib/net40/DotNetZip.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -77,6 +86,15 @@
         },
         "runtime": {
           "lib/net45/AdonisUI.ClassicTheme.dll": {}
+        }
+      },
+      "DotNetZip/1.15.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/DotNetZip.dll": {}
+        },
+        "runtime": {
+          "lib/net40/DotNetZip.dll": {}
         }
       },
       "Newtonsoft.Json/13.0.1": {
@@ -123,6 +141,15 @@
           "lib/net45/AdonisUI.ClassicTheme.dll": {}
         }
       },
+      "DotNetZip/1.15.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/DotNetZip.dll": {}
+        },
+        "runtime": {
+          "lib/net40/DotNetZip.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -165,6 +192,15 @@
         },
         "runtime": {
           "lib/net45/AdonisUI.ClassicTheme.dll": {}
+        }
+      },
+      "DotNetZip/1.15.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/DotNetZip.dll": {}
+        },
+        "runtime": {
+          "lib/net40/DotNetZip.dll": {}
         }
       },
       "Newtonsoft.Json/13.0.1": {
@@ -215,6 +251,23 @@
         "lib/netcoreapp3.1/AdonisUI.ClassicTheme.xml"
       ]
     },
+    "DotNetZip/1.15.0": {
+      "sha512": "sqVRN5V5NI/HM5Ll+Flr+u4fIf2pNiGSQr5pusAGCufYeEQ3Wn3yFlgw87iqHhbTkKQmCHZVsfBfRw05GSKG5g==",
+      "type": "package",
+      "path": "dotnetzip/1.15.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dotnetzip.1.15.0.nupkg.sha512",
+        "dotnetzip.nuspec",
+        "lib/net40/DotNetZip.dll",
+        "lib/net40/DotNetZip.pdb",
+        "lib/net40/DotNetZip.xml",
+        "lib/netstandard2.0/DotNetZip.dll",
+        "lib/netstandard2.0/DotNetZip.pdb",
+        "lib/netstandard2.0/DotNetZip.xml"
+      ]
+    },
     "Newtonsoft.Json/13.0.1": {
       "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
       "type": "package",
@@ -246,6 +299,7 @@
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
       "AdonisUI.ClassicTheme >= 1.17.1",
+      "DotNetZip >= 1.15.0",
       "Newtonsoft.Json >= 13.0.1"
     ]
   },
@@ -285,6 +339,10 @@
           "AdonisUI.ClassicTheme": {
             "target": "Package",
             "version": "[1.17.1, )"
+          },
+          "DotNetZip": {
+            "target": "Package",
+            "version": "[1.15.0, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",

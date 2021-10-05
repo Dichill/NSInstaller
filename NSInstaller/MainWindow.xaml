@@ -38,6 +38,7 @@
                         <Button x:Name="fixAtmoBttn" Click="fixAtmoBttn_Click" Content="Fix Atmosphere crashes" Background="#3D3D4C" BorderBrush="{x:Null}"/>
                         <Button x:Name="updtHekateBttn" Click="updtHekateBttn_Click" Content="Update Hekate" Background="#3D3D4C" BorderBrush="{x:Null}"/>
                         <Button x:Name="updtAtmoBttn" Click="updtAtmoBttn_Click" Content="Update Atmosphere" Background="#3D3D4C" BorderBrush="{x:Null}"/>
+                        <Button x:Name="homeBrewBttn" Content="Homebrew Apps" Background="#3D3D4C" BorderBrush="{x:Null}"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                         <ProgressBar x:Name="progressBar" Minimum="0"

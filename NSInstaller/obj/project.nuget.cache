@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "KqGXrG16fkwP23nuu2J06tHSJSPsxcmQ8Az2MekUq73gTTV9KFAcbSYnHiX1uTiG8Y6yEk44hpvIV/gXrH92Bg==",
+  "dgSpecHash": "GdrIM3YkB/S/FdXzP5ipGCtD95rXpOBlxt60xUmEIoWJRAzneYaFYy9/Dy0FCFHsV70ygvVegTsB1CBERGqScw==",
   "success": true,
   "projectFilePath": "D:\\repos\\NSInstaller\\NSInstaller\\NSInstaller.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dichill\\.nuget\\packages\\adonisui\\1.17.1\\adonisui.1.17.1.nupkg.sha512",
     "C:\\Users\\Dichill\\.nuget\\packages\\adonisui.classictheme\\1.17.1\\adonisui.classictheme.1.17.1.nupkg.sha512",
+    "C:\\Users\\Dichill\\.nuget\\packages\\dotnetzip\\1.15.0\\dotnetzip.1.15.0.nupkg.sha512",
     "C:\\Users\\Dichill\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
