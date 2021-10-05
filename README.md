@@ -28,7 +28,7 @@ When you **Start Installation** It will also download the files and extract it t
 
 **IMPORTANT**
 - For a video explaining how to jailbreak switch using NSInstaller you can check this video out: 
-- Also don't forget to backup your **Nand**! You can follow this guide right here: https://switchway.xyz/backup-nand-%26-keys
+- Also don't forget to backup your **Nand**! You can follow this guide right [here](https://switchway.xyz/backup-nand-%26-keys)
 
 ## Tools
 - **Install Sig Patches** - If you have Atmosphere already, you can install Sigpatches if games/homebrew applications keeps crashing.
