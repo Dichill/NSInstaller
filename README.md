@@ -37,6 +37,9 @@ When you **Start Installation** It will also download the files and extract it t
 - **Update Hekate** - Updates Hekate to its latest version.
 - **Update Atmosphere** - Backups folders and extracts the latest version of Atmosphere including Sig Patches.
 
+## Common Errors
+- **The File C:/NSInstaller/backup/...** - Back up folder still exist, delete everything inside it. If you deleted the backup folder, restart NSInstaller.
+
 ## Credits
 - [benruehl](https://github.com/benruehl) for the best looking themes [Adonis UI WPF](https://github.com/benruehl/adonis-ui/)
 - [Ookii](https://github.com/ookii-dialogs) for the amazing folder dialogs! [Ookii Dialogs WPF](https://github.com/ookii-dialogs/ookii-dialogs-wpf)
