@@ -86,6 +86,11 @@ namespace NSInstaller
             filePathTxt.IsEnabled = true;
         }
 
+        private async void AdonisWindow_Initialized(object sender, EventArgs e)
+        {
+            await CheckGitHubNewerVersion();
+        }
+
         // Credits to XCI-Explorer!
         private string getAssemblyVersion()
         {
@@ -157,12 +162,10 @@ namespace NSInstaller
             if (Directory.Exists(filePathTxt.Text + "/bootloader/"))
             {
                 CopyDirectory(new DirectoryInfo(filePathTxt.Text + "/bootloader"), new DirectoryInfo(util.backup_folder + "/bootloader"));
-                DeleteDirectory(filePathTxt.Text + "/bootloader/");
             }
             if (Directory.Exists(filePathTxt.Text + "/atmosphere/"))
             {
-                CopyDirectory(new DirectoryInfo(filePathTxt.Text + "/atmosphere"), new DirectoryInfo(util.backup_folder + "/atmosphere"));
-                DeleteDirectory(filePathTxt.Text + "/atmosphere/");
+                CopyDirectory(new DirectoryInfo(filePathTxt.Text + "/atmosphere"), new DirectoryInfo(util.backup_folder + "/atmosphere"));               
             }
         }
         #endregion
@@ -418,11 +421,10 @@ namespace NSInstaller
                             // Back it up first, just in case something went wrong.
                             BackupFiles();
 
-                            new List<string>(Directory.GetFiles(filePathTxt.Text)).ForEach(file => { if (file.ToUpper().Contains("hekate".ToUpper())) File.Delete(file); });
-                            Directory.Delete(filePathTxt.Text + "/atmosphere/");
-                            Directory.Delete(filePathTxt.Text + "/bootloader/");
-
-                            Task task = DownloadSingleLink("https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases");
+                            DeleteDirectory(filePathTxt.Text + "/atmosphere/");
+                            DeleteDirectory(filePathTxt.Text + "/bootloader/");
+                            
+                            Task task1 = DownloadSingleLink("https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases");
                             Task task2 = DownloadSingleLink("https://api.github.com/repos/ITotalJustice/patches/releases");
                         }
                         else
@@ -478,7 +480,7 @@ namespace NSInstaller
 
                 // Call CopyDirectory() recursively.
                 CopyDirectory(dir, new DirectoryInfo(destinationDir));
-            }
+            }            
         }
 
         // https://stackoverflow.com/questions/329355/cannot-delete-directory-with-directory-deletepath-true
@@ -504,11 +506,6 @@ namespace NSInstaller
 
         #region Models and Utilities
         Util util = new Util();
-        #endregion
-
-        private async void AdonisWindow_Initialized(object sender, EventArgs e)
-        {
-            await CheckGitHubNewerVersion();
-        }
+        #endregion        
     }
 }
