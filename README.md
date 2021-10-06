@@ -15,6 +15,9 @@ releases.txt file contains repositories that are needed for switch, you can add 
 
 For Example: https://github.com/CTCaer/hekate/releases -> https://api.github.com/repos/CTCaer/hekate/releases<br>
 
+**IMPORTANT**
+Links must be in order so that it will download the bootloader first, atmosphere, and then the signature patches.
+
 When you **Start Installation** It will also download the files and extract it to your Micro SD.
 
 ## How to use
