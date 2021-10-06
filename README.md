@@ -30,7 +30,7 @@ When you **Start Installation** It will also download the files and extract it t
 8. Do note that sig patches are already installed into your atmosphere, you don't need to use the Tools since it does it for you already.
 
 **IMPORTANT**
-- For a video explaining how to jailbreak switch using NSInstaller you can check this video out: 
+- For a video explaining how to jailbreak switch using NSInstaller you can check this video out https://www.youtube.com/watch?v=_hRNVX3reME
 - Also don't forget to backup your **Nand**! You can follow this guide right [here](https://switchway.xyz/backup-nand-%26-keys)
 
 ## Tools
@@ -50,4 +50,5 @@ Any errors that isn't in the Common Errors list, please file an issue with the p
 - [CTCaer](https://github.com/CTCaer) for the amazing bootloader! [Hekate](https://github.com/CTCaer/hekate)
 - [SciresM](https://github.com/Atmosphere-NX) for the amazing custom firmware! [Atmosphere](https://github.com/Atmosphere-NX/Atmosphere)
 - [ITotalJustice](https://github.com/ITotalJustice) for the amazing sig patches! [Patches](https://github.com/ITotalJustice/patches)
-- [Switchway](https://switchway.xyz/) if it wasn't for their switch modding guides, I wouldn't be where I'm today!
+- [Switchway](https://switchway.xyz/) one of the best switch jailbreak community if it wasn't for their switch modding guides, I wouldn't be where I'm today!
+- [Better Gaming (Yu)](https://www.youtube.com/channel/UC2X23IIMBLKO6PxtwoNcHoQ/videos) and [Better Gaming Community](https://discord.com/invite/3Gj7rtQmhS) for making the best videos and having one of the best community out there!
