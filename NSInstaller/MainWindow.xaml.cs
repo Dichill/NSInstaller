@@ -13,12 +13,60 @@ using Newtonsoft.Json.Linq;
 using System.Threading;
 using System.Collections.Generic;
 using Ionic.Zip;
+using Octokit;
+using System.Diagnostics;
 
 namespace NSInstaller
 {
     public partial class MainWindow : AdonisWindow
     {
-        private bool isFinished = false;        
+        private bool isFinished = false;
+
+        #region Github Version Checker
+        // https://stackoverflow.com/questions/25678690/how-can-i-check-github-releases-in-c
+        private async System.Threading.Tasks.Task CheckGitHubNewerVersion()
+        {          
+            try
+            {
+                //Get all releases from GitHub
+                //Source: https://octokitnet.readthedocs.io/en/latest/getting-started/
+                GitHubClient client = new GitHubClient(new ProductHeaderValue("ns-installer"));
+                IReadOnlyList<Release> releases = await client.Repository.Release.GetAll("Dichill", "NSInstaller");
+
+                //Setup the versions
+                Version latestGitHubVersion = new Version(releases[0].TagName);
+                Version localVersion = new Version(getAssemblyVersion()); //Replace this with your local version. 
+                                                                          //Only tested with numeric values.
+
+                //Compare the Versions
+                //Source: https://stackoverflow.com/questions/7568147/compare-version-numbers-without-using-split-function
+                int versionComparison = localVersion.CompareTo(latestGitHubVersion);
+                if (versionComparison < 0)
+                {
+                    //The version on GitHub is more up to date than this local release.
+                    if (MessageBox.Show("A New update has been found! Do you want to download the new one?", "NSInstaller | New Update!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        Process.Start("https://github.com/Dichill/NSInstaller/releases");
+                    }
+                }
+                else if (versionComparison > 0)
+                {
+                    //This local version is greater than the release version on GitHub.
+                    this.Title = "NSInstaller Prebuild | v" + getAssemblyVersion();
+                }
+                else
+                {
+                    //This local Version and the Version on GitHub are equal.
+                    this.Title = "NSInstaller v" + getAssemblyVersion();
+                }
+            }    
+            catch(Exception e)
+            {
+                MessageBox.Show("NSInstaller Requires Internet to install the latest files onto your modded switch.", "NSInstaller | No Internet Connection");
+                Environment.Exit(0);
+            }
+        }
+        #endregion
 
         public MainWindow()
         {          
@@ -457,5 +505,10 @@ namespace NSInstaller
         #region Models and Utilities
         Util util = new Util();
         #endregion
+
+        private async void AdonisWindow_Initialized(object sender, EventArgs e)
+        {
+            await CheckGitHubNewerVersion();
+        }
     }
 }

@@ -52,6 +52,20 @@
         "runtime": {
           "lib/net45/Newtonsoft.Json.dll": {}
         }
+      },
+      "Octokit/0.50.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Net.Http"
+        ],
+        "compile": {
+          "lib/net46/Octokit.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Octokit.dll": {}
+        }
       }
     },
     ".NETFramework,Version=v4.7.2/win": {
@@ -104,6 +118,20 @@
         },
         "runtime": {
           "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Octokit/0.50.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Net.Http"
+        ],
+        "compile": {
+          "lib/net46/Octokit.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Octokit.dll": {}
         }
       }
     },
@@ -158,6 +186,20 @@
         "runtime": {
           "lib/net45/Newtonsoft.Json.dll": {}
         }
+      },
+      "Octokit/0.50.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Net.Http"
+        ],
+        "compile": {
+          "lib/net46/Octokit.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Octokit.dll": {}
+        }
       }
     },
     ".NETFramework,Version=v4.7.2/win-x86": {
@@ -210,6 +252,20 @@
         },
         "runtime": {
           "lib/net45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Octokit/0.50.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "System",
+          "System.Net.Http"
+        ],
+        "compile": {
+          "lib/net46/Octokit.dll": {}
+        },
+        "runtime": {
+          "lib/net46/Octokit.dll": {}
         }
       }
     }
@@ -294,13 +350,30 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
+    },
+    "Octokit/0.50.0": {
+      "sha512": "J5vqespSvjxIAAtjG1Tc6ghBqyfRgDJtKnk/ifi4N0hD/f3JbPwyEDRT+Eelu/bS4C4M6mu5gt1WJqar+fByzg==",
+      "type": "package",
+      "path": "octokit/0.50.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net46/Octokit.dll",
+        "lib/net46/Octokit.xml",
+        "lib/netstandard2.0/Octokit.dll",
+        "lib/netstandard2.0/Octokit.xml",
+        "octokit.0.50.0.nupkg.sha512",
+        "octokit.nuspec",
+        "octokit.png"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
       "AdonisUI.ClassicTheme >= 1.17.1",
       "DotNetZip >= 1.15.0",
-      "Newtonsoft.Json >= 13.0.1"
+      "Newtonsoft.Json >= 13.0.1",
+      "Octokit >= 0.50.0"
     ]
   },
   "packageFolders": {
@@ -347,6 +420,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"
+          },
+          "Octokit": {
+            "target": "Package",
+            "version": "[0.50.0, )"
           }
         }
       }
