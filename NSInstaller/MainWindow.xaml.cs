@@ -71,7 +71,7 @@ namespace NSInstaller
         {            
             if (filePathTxt.Text.Length == 0) MessageBox.Show("Please select the micro sd folder before starting the installation.", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
             else if (filePathTxt.Text.Length >= 2)
-            {
+            {                
                 try
                 {
                     // Check First the Folder.
@@ -80,15 +80,44 @@ namespace NSInstaller
                     var directory = new DirectoryInfo(filePathTxt.Text);
                     var files = directory.GetFiles();
                     if (files.Length == 0) StartInstallation();
-                    else if (files.Length >= 1) { startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!"; MessageBox.Show("Please format your SD Card First before doing the Installation. (There are files in the Micro SD)", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning); }
+                    else if (files.Length >= 1)
+                    {
+                        startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!";
+                        MessageBoxResult dialogResult = MessageBox.Show("There are files in your Micro SD, atmosphere and bootloader folder will be backed up, do you want to proceed?", "NSInstaller", MessageBoxButton.YesNoCancel);
+                        if (dialogResult == MessageBoxResult.Yes)
+                        {
+                            BackupFiles();
+                            StartInstallation();
+
+                        } else
+                        {
+                            proglabel.Text = "User did not choose options.";
+                        }
+
+                    }
                     else { startBttn.Content = "Start Installation"; proglabel.Text = "Failed: Folder is not accessible!"; MessageBox.Show("Make sure you selected the Micro SD Root Folder!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning); }
                 }
                 catch (Exception ex)
                 {
                     startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!"; MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+                }                
             }                      
         }
+        #region Backup Handler
+        private void BackupFiles()
+        {
+            if (Directory.Exists(filePathTxt.Text + "/bootloader/"))
+            {
+                CopyDirectory(new DirectoryInfo(filePathTxt.Text + "/bootloader"), new DirectoryInfo(util.backup_folder + "/bootloader"));
+                DeleteDirectory(filePathTxt.Text + "/bootloader/");
+            }
+            if (Directory.Exists(filePathTxt.Text + "/atmosphere/"))
+            {
+                CopyDirectory(new DirectoryInfo(filePathTxt.Text + "/atmosphere"), new DirectoryInfo(util.backup_folder + "/atmosphere"));
+                DeleteDirectory(filePathTxt.Text + "/atmosphere/");
+            }
+        }
+        #endregion
 
         #region Installation Handler, CleanInstallation Handler
 
@@ -205,16 +234,16 @@ namespace NSInstaller
                                       "Windows NT 5.2; .NET CLR 1.0.3705;)");
                     webClient.DownloadProgressChanged += (s, e) => { Dispatcher.Invoke(() => { progressBar.Value = e.ProgressPercentage; proglabel.Text = $"[{e.ProgressPercentage}%] Downloading - " + url; }); };
                     webClient.DownloadFileCompleted += (s, e) => { 
-                        ExtractZips(Path.GetFileName(new Uri(url).LocalPath));
-                        CleanInstallation();
-                    };
+                        
+                        Dispatcher.Invoke(() => { ExtractZips(Path.GetFileName(new Uri(url).LocalPath)); CleanInstallation(); });
+                    }; 
                     await webClient.DownloadFileTaskAsync(new Uri(url), util.temp_folder + Path.GetFileName(new Uri(url).LocalPath)).ConfigureAwait(false);
                     webClient.Dispose();
                 }
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString(), "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Error);
+                Dispatcher.Invoke(() => MessageBox.Show(e.ToString(), "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Error)) ;
             }            
         }
 
@@ -254,7 +283,7 @@ namespace NSInstaller
                     }
                     catch (Exception ex)
                     {
-                        startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!"; MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        startBttn.Content = "Start Installation"; proglabel.Text = "Error occured installing Signature Patches."; MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }                    
                 }
             }            
@@ -289,7 +318,7 @@ namespace NSInstaller
                     }
                     catch (Exception ex)
                     {
-                        startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!"; MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        startBttn.Content = "Start Installation"; proglabel.Text = "Error occured while installing Atmosphere"; MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
             }
@@ -309,8 +338,8 @@ namespace NSInstaller
                         if (Directory.Exists(filePathTxt.Text + "/bootloader/"))
                         {
                             new List<string>(Directory.GetFiles(filePathTxt.Text)).ForEach(file => { if (file.ToUpper().Contains("hekate".ToUpper())) File.Delete(file); });
-                            Task task = DownloadSingleLink("https://api.github.com/repos/CTCaer/hekate/releases");
-                        }
+                            new List<string>(Directory.GetFiles(filePathTxt.Text)).ForEach(file => { if (!file.ToUpper().Contains("hekate".ToUpper())) { Task task = DownloadSingleLink("https://api.github.com/repos/CTCaer/hekate/releases"); }  });
+                        }                        
                         else
                         {
                             CleanInstallation();
@@ -319,7 +348,7 @@ namespace NSInstaller
                     }
                     catch (Exception ex)
                     {
-                        startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!"; MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        startBttn.Content = "Start Installation"; proglabel.Text = "Error occured while Installing Hekate"; MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
             }
@@ -339,10 +368,12 @@ namespace NSInstaller
                         if (Directory.Exists(filePathTxt.Text + "/bootloader/") && Directory.Exists(filePathTxt.Text + "/atmosphere/"))
                         {
                             // Back it up first, just in case something went wrong.
-                            CopyDirectory(new DirectoryInfo(filePathTxt.Text + "/atmosphere"), new DirectoryInfo(util.backup_folder + "/atmosphere"));
-                            CopyDirectory(new DirectoryInfo(filePathTxt.Text + "/bootloader"), new DirectoryInfo(util.backup_folder + "/bootloader"));
+                            BackupFiles();
 
                             new List<string>(Directory.GetFiles(filePathTxt.Text)).ForEach(file => { if (file.ToUpper().Contains("hekate".ToUpper())) File.Delete(file); });
+                            Directory.Delete(filePathTxt.Text + "/atmosphere/");
+                            Directory.Delete(filePathTxt.Text + "/bootloader/");
+
                             Task task = DownloadSingleLink("https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases");
                             Task task2 = DownloadSingleLink("https://api.github.com/repos/ITotalJustice/patches/releases");
                         }
@@ -354,7 +385,7 @@ namespace NSInstaller
                     }
                     catch (Exception ex)
                     {
-                        startBttn.Content = "Start Installation"; proglabel.Text = "Failed: SD Card is not Empty!"; MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        startBttn.Content = "Start Installation"; proglabel.Text = "Error occured while updating Atmosphere"; MessageBox.Show("An Error has occured! " + ex.ToString() + "\nSend a screenshot to the support discord so they can help you out!", "NSInstaller", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
             }
@@ -400,6 +431,26 @@ namespace NSInstaller
                 // Call CopyDirectory() recursively.
                 CopyDirectory(dir, new DirectoryInfo(destinationDir));
             }
+        }
+
+        // https://stackoverflow.com/questions/329355/cannot-delete-directory-with-directory-deletepath-true
+        public static void DeleteDirectory(string target_dir)
+        {
+            string[] files = Directory.GetFiles(target_dir);
+            string[] dirs = Directory.GetDirectories(target_dir);
+
+            foreach (string file in files)
+            {
+                File.SetAttributes(file, FileAttributes.Normal);
+                File.Delete(file);
+            }
+
+            foreach (string dir in dirs)
+            {
+                DeleteDirectory(dir);
+            }
+
+            Directory.Delete(target_dir, false);
         }
         #endregion 
 
