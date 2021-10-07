@@ -52,3 +52,4 @@ Any errors that isn't in the Common Errors list, please file an issue with the p
 - [ITotalJustice](https://github.com/ITotalJustice) for the amazing sig patches! [Patches](https://github.com/ITotalJustice/patches)
 - [Switchway](https://switchway.xyz/) one of the best switch jailbreak community if it wasn't for their switch modding guides, I wouldn't be where I'm today!
 - [Better Gaming (Yu)](https://www.youtube.com/channel/UC2X23IIMBLKO6PxtwoNcHoQ/videos) and [Better Gaming Community](https://discord.com/invite/3Gj7rtQmhS) for making the best videos and having one of the best community out there!
+- JustNightBGツャ For making a website about NSInstaller!
