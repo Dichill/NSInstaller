@@ -54,6 +54,9 @@ Any errors that isn't in the Common Errors list, please file an issue with the p
 - [Better Gaming (Yu)](https://www.youtube.com/channel/UC2X23IIMBLKO6PxtwoNcHoQ/videos) and [Better Gaming Community](https://discord.com/invite/3Gj7rtQmhS) for making the best videos and having one of the best community out there!
 - JustNightBGツャ For making a website about NSInstaller!
 
+## Disclaimer
+NSInstaller & the Author is not responsible for any damages that happened in your Nintendo Switch. NSInstaller simply provides installation files from Github and extracts those files into your Micro SD. I will not take responsibility for any damages that happens to your device. 
+
 ## Donation
 You can donate me in paypal :))
 krystler.paypal@gmail.com
