@@ -58,5 +58,4 @@ Any errors that isn't in the Common Errors list, please file an issue with the p
 **NSInstaller** & the **Author** is not responsible for any damages that may/may not happen in your Nintendo Switch. NSInstaller simply provides installation files from Github and extracts those files into your Micro SD (Check Credits for the links). I will not take any **responsibility** for any **damages** that happens to your device. 
 
 ## Donation
-You can donate me in paypal :))
-krystler.paypal@gmail.com
+BTC: 1GkLMJR6Xf2ovBpeB3fy72AFSQBMJgwr7r
