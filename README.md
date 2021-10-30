@@ -42,6 +42,7 @@ When you **Start Installation** It will also download the files and extract it t
 ## Common Errors
 Any errors that isn't in the Common Errors list, please file an issue with the picture provided, or join the support discord.
 - `The File C:/NSInstaller/backup/...` - Back up folder still exist, delete everything inside it. If you deleted the backup folder, restart NSInstaller.
+- ``Needs Internet Connection even though I have Internet.`` Firewall is probably blocking NSInstaller, try allowing NSInstaller in Firewall. (Fix for this in the next major update.)
 
 ## Credits
 - [benruehl](https://github.com/benruehl) for the best looking themes [Adonis UI WPF](https://github.com/benruehl/adonis-ui/)
